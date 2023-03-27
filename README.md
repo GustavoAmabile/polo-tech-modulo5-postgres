@@ -22,10 +22,10 @@ Com o banco de dados e tabelas criadas agora é hora de popularmos nosso e-comme
 
 <ul>
   <li>5 clientes</li>
+  <li>5 produtos</li>
   <li>2 clientes devem ter pelo menos 3 produtos no carrinho</li>
   <li>6 pedidos com pelo menos 2 produtos cada um</li>
-  <li>3 campanhas de cupons </li>
-  <li>2 pedidos que utilizaram cupons </li>
+  <li>3 campanhas de cupons <em>2 pedidos que utilizaram cupons</em></li>
   <li>2 fornecedores - <em>associe os produtos com esses dois fornecedores</em></li>
   <li>2 estoques - <em></em> adicione os produtos cadastrados nos estoque</li>
 </ul>
