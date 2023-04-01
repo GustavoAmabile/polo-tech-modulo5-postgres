@@ -47,4 +47,4 @@ Com o banco de dados e tabelas criadas agora é hora de popularmos nosso e-comme
 <h4>Segunda FN</h4>
 <p>Para atender a segunda forma normal, garantimoas que todas as colunas dependessem da chave primária inteira. <br /><p>
 <h4>Terceira FN</h4>
-<p>Para atender a terceira forma normal retiramos as dependências transitivas em relação as PK. Atributos não chaves são independentes uns dos outros,sem derivação.<br /> <p>
+<p>Para atender a terceira forma normal retiramos as dependências transitivas em relação as PK. Atributos não chaves são independentes uns dos outros, sem derivação.<br /><p>
