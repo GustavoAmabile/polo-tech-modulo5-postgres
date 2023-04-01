@@ -75,3 +75,66 @@ join ecommerce926.endereco on ecommerce926.cliente.id_endereco = ecommerce926.en
 group by ecommerce926.endereco.cidade
 order by quantidade_clientes desc 
 limit 1;
+
+-- 16
+select c.nome as "Nome cliente", p.id as "ID pedido", p.previsao_entrega as "Previsão Entrega", 
+p.status as "Status", p2.descricao as "Descrição Produto", ip.quantidade as "Qtde comprada", ip.valor as "Valor"
+from pedido p 
+join cliente c on c.id = p.id_cliente 
+join item_pedido ip on ip.id_pedido = p.id 
+join produto p2 on ip.id_produto = p2.id 
+where p.id = '952'
+
+-- 17
+select ecommerce926.cliente.id, ecommerce926.cliente.nome, max(ecommerce926.pedido.data_criacao) as data_ultima_compra
+from ecommerce926.cliente 
+join ecommerce926.pedido  on ecommerce926.cliente.id = ecommerce926.pedido.id_cliente 
+where date_part('year', ecommerce926.pedido.data_criacao) = 2022
+group by ecommerce926.cliente.id, ecommerce926.cliente.nome 
+order by ecommerce926.cliente.nome
+
+-- 18
+select c.nome as "Nome cliente", ip.valor as "Valor pedido" from pedido p
+join item_pedido ip on ip.id_pedido = p.id 
+join cliente c on c.id = p.id_cliente 
+where p.status = 'SUCESSO'
+order by ip.valor desc limit 10
+
+-- 19
+select ecommerce926.produto.descricao, 
+	sum(ecommerce926.item_pedido.quantidade) as quantidade_vendida,
+	sum(ecommerce926.item_pedido.quantidade  * ecommerce926.item_pedido.valor) as valor_total_vendas
+from ecommerce926.produto
+	join ecommerce926.item_pedido on ecommerce926.produto.id = ecommerce926.item_pedido.id_produto 
+	join ecommerce926.pedido on ecommerce926.item_pedido.id_pedido = ecommerce926.pedido.id 
+where 
+	date_part('year', ecommerce926.pedido.data_criacao) = date_part('year', current_date)
+group by
+	ecommerce926.produto.descricao
+order by 
+	sum(ecommerce926.item_pedido.quantidade) desc
+limit 10;
+
+-- 20
+select AVG(ip.valor) as "Ticket Médio" from item_pedido ip
+join pedido p on p.id = ip.id_pedido 
+where p.status = 'SUCESSO'
+
+-- 21
+
+-- 22
+select c.id as "ID cupom", SUM(c.valor) as "Valor descontado" from cupom c 
+join pedido p on p.id_cupom = c.id 
+group by c.id
+order by count(p.id_cupom) desc limit 10
+
+-- 23
+
+
+-- 24
+select p.id as "ID pedido", e.uf as "UF", p2.codigo_barras as "Codigo Barras" from pedido p 
+join item_pedido ip on ip.id_pedido = p.id 
+join produto p2 on p2.id = ip.id_produto 
+join cliente c on c.id = p.id_cliente 
+join endereco e on c.id_endereco = e.id 
+where e.uf = 'SP' and p2.codigo_barras = '97692630963921'
