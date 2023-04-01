@@ -129,7 +129,11 @@ group by c.id
 order by count(p.id_cupom) desc limit 10
 
 -- 23
-
+select c.descricao as "Descrição", p.id_cupom as "ID Cupom", count(p.id_cupom) qtd_utilizada, c.limite_maximo_usos as "Limite usos" from pedido p, cupom c
+where p.id_cupom = c.id 
+group by p.id_cupom, c.descricao, c.valor, c.limite_maximo_usos 
+having count(p.id_cupom) > c.limite_maximo_usos 
+order by p.id_cupom;
 
 -- 24
 select p.id as "ID pedido", e.uf as "UF", p2.codigo_barras as "Codigo Barras" from pedido p 
