@@ -121,6 +121,16 @@ join pedido p on p.id = ip.id_pedido
 where p.status = 'SUCESSO'
 
 -- 21
+select a.id as "ID", a.nome as "Nome", max(valor_gasto) maior_gasto from (
+	select c.id, c.nome, sum(ip.quantidade * ip.valor) "valor_gasto" from ecommerce926.cliente c 
+	join ecommerce926.pedido p on p.id_cliente = c.id
+	join ecommerce926.item_pedido ip on ip.id_pedido = p.id 
+	where p.status not in ('PENDENTE_CONFIRMACAO_PAGAMENTO','CANCELADO')
+	group by c.id, c.nome, p.id
+	having 
+		sum(ip.quantidade * ip.valor) > 10000) as a
+	group by a.id,a.nome
+	order by maior_gasto desc;
 
 -- 22
 select c.id as "ID cupom", SUM(c.valor) as "Valor descontado" from cupom c 
