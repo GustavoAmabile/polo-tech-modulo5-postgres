@@ -32,3 +32,19 @@ Com o banco de dados e tabelas criadas agora é hora de popularmos nosso e-comme
 
 
 <p>Entregar também a remoção de 1 cliente que não possua pedidos ou items no carrinho e a atualização da descrição e valor de um produto.<br /> A entrega pode ser feita no github e estar em um arquivo chamado ecommerce-dml.sql.</p>
+
+
+
+
+
+
+
+<h2>Exercício Tabela Normalizada</h2>
+
+
+<h4>Primeira FN</h4>
+<p>Para atender a primeira forma normal foram criadas as tabelas roteiristas,artistas e filmes_usuarios para que cada campo receba valores atômicos.<br /><p>
+<h4>Segunda FN</h4>
+<p>Para atender a segunda forma normal, garantimoas que todas as colunas dependessem da chave primária inteira. <br /><p>
+<h4>Terceira FN</h4>
+<p>Para atender a terceira forma normal retiramos as dependências transitivas em relação as PK. Atributos não chaves são independentes uns dos outros, sem derivação.<br /><p>
